@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>vue基础应用</title>
+	<meata charset = "utf-8">
+	<style type="text/css">
+		.red-font{
+			color:red;
+		}
+	</style>
+</head>
+<body>
+	<div id="app">
+		<!-- v-text -->
+		<hr>
+		<h2>v-text指令</h2>
+		<p>{{content}}<p>
+
+
+		<!-- v-html -->
+		<hr>
+		<h2>v-html指令</h2>
+		列表：<ul v-html = "list"></ul>
+
+
+		<!-- v-bind -->	
+		<hr>
+		<h2>v-bind指令</h2>
+		<h3>1.添加标签属性</h3>
+
+		百度： <a v-bind:href = "url">跳转</a>
+
+		<h3>2.添加类名“red-font”</h3>
+		<p v-bind:class = "{'red-font':true}">红色字体</p>
+
+
+
+		<!-- v-for -->
+		<hr>
+		<h2>v-for指令</h2>
+		<h3>1.第一种遍历 item in items</h3>
+		<ul>
+			<li v-for="item in contacts">姓名： {{item.name}} &nbsp 联系方式： {{item.contact}}</li>
+		</ul>
+
+
+		<h3>2.第二种遍历 (item,index)in items</h3>
+		<ul>
+			<li v-for="(item,index) in contacts">序号：{{index}} &nbsp 姓名： {{item.name}} &nbsp 联系方式： {{item.contact}}</li>
+		</ul>
+
+
+
+
+
+		<!-- v-on -->
+		<hr>
+		<h2>v-on指令</h2>
+		<button v-on:click = "showMsg">alert</button>
+
+
+
+
+		<!-- v-model -->
+		<!-- 双向绑定dom可以改变js中的值，js也能改变dom中的值 -->
+		<hr>
+		<h2>v-model指令</h2>
+		<input type="text" v-model = "username" v-on:keyup = "print" placeholder="请输入你的用户名">
+
+
+
+		<!-- v-if -->
+		<!-- 不满足条件则不会添加dom元素,注意不适合大量进行dom的操作 -->
+		<hr>
+		<h2>v-if指令</h2>
+		<input type="button" v-on:click="show" value="显示" />
+		<input type="button" v-on:click="hide" value="隐藏" />
+		<p v-if="flag">你能看到我么？</p>
+
+
+
+
+		<!-- v-show -->
+		<!-- 通过样式去显示和隐藏 -->
+		<hr>
+		<h2>v-show指令</h2>
+		<input type="button" v-on:click="toggle" ref="toggleBtn" value="隐藏" />
+		<p v-show="flag_show">你能看到我么？</p>
+
+
+
+		<!-- 钩子函数：mounted -->
+		<!-- mounted 就是在vm将编译好的HTML替换掉vm中的el之后执行的函数，可以暂时理解为页面加载完成 -->
+		<input type="number" on-bind:value="countdown">
+	</div>
+</body>
+
+<!-- cdn引用 -->
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+<script src="./base.js" ></script>
+</html>

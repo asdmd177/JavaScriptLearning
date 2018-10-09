@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<!-- 引入iview css -->
+	<link rel="stylesheet" type="text/css" href="http://unpkg.com/iview/dist/styles/iview.css">
+	
+	<title>通讯录</title>
+
+	<style type="text/css">
+		.tab{
+			margin:5px 5px;
+		}
+		.addInput{
+			width: 200px;
+		}
+	</style>
+</head>
+<body>
+	<div id="mainBody">
+		<div class="tab">
+			<i-input class="addInput" placeholder="姓名" clearable v-model="addNew.name"></i-input>
+			<i-input class="addInput" placeholder="手机号码" clearable v-model="addNew.phone"></i-input>
+			<i-input class="addInput" placeholder="邮箱地址" clearable v-model="addNew.mail"></i-input>
+			<i-input class="addInput" placeholder="住址" clearable v-model="addNew.address"></i-input>
+			<i-button type="primary" @click="addNewContact">添加</i-button>
+		</div>
+		<i-table v-bind:columns="columns" v-bind:data="contactData"></i-table>
+	</div>
+</body>
+	<!-- 引入vue -->
+	<script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+	<!-- 引入iview -->
+	<script src="http://unpkg.com/iview/dist/iview.min.js"></script>
+	<!-- 引入本身的js-->
+	<script src="./contact.js"></script>
+</html>

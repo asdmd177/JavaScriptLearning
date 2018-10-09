@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>箭头函数的this指向</title>
+</head>
+<body>
+	<script type="text/javascript">
+		/**
+		 * 写在前面：箭头函数本身没有this的，箭头函数中调用的this是函数定义上下文中的this。上下文没有定义this，
+		 * this就指向Window。普通函数在执行的时候绑定this，也就是哪个对象调用这个函数，this就指向调用函数的那个对象。
+		 */
+
+		 //案例一：
+		 var name = "狗剩";
+		 var age = 20;
+
+		 var student = {
+		 	name:"铁蛋",
+		 	age:18,
+		 	sayHi:() => console.log("姓名： "+this.name+"   年龄： "+this.age)
+		 }
+
+		 student.sayHi();		//姓名： 狗剩   年龄： 20
+
+		 student = {
+		 	name:"铁蛋",
+		 	age:18,
+		 	sayHi:function(){
+		 		console.log("姓名： "+this.name+"   年龄： "+this.age);
+		 	}
+		 }
+
+		 student.sayHi();		//姓名： 铁蛋   年龄： 18
+
+		 /**
+		  * 例子一 分析：
+		  * 	普通函数是由student调用的，this指向student对象
+		  *
+		  *		箭头函数没有this，定义函数的上下文环境是student，但是student本身也没有this，
+		  * 	所以当没有定义this的时候，箭头函数的this指向Window。因此this.name和this.age
+		  *		分别等效为Window.name以及Window.age。
+		  */
+
+
+
+
+		  //案例二 分析：
+		  function Student(name,age){
+		  	this.name = name;
+		  	this.age = age;
+		  	this.sayHi = () => console.log("姓名： "+this.name+"   年龄： "+this.age);
+		  }
+
+		  new Student("美美",15).sayHi();		//姓名： 美美   年龄： 15
+
+		  function _Student(name,age){
+		  	this.name = name;
+		  	this.age = age;
+		  	var sayHi = () => console.log("姓名： "+this.name+"   年龄： "+this.age);
+		  	sayHi();
+		  }
+
+		  new _Student("狗娃",2);				//姓名： 狗娃   年龄： 2
+
+		  /**
+		   * 例子二 分析：
+		   * 	两个箭头函数都定义在构造函数中，构造函数就是函数定义的上下文环境，首先看上下文环境有没有this，
+		   *    很明显是有的，this指向new生成的对象，那么两个箭头函数中this指向的就分别是new生成的两个对象。
+		   */
+
+
+
+
+
+		   //案例三：
+		   var worker = {
+		   	name:"凤霞",
+		   	work:(beforeWork)=>{
+		   		beforeWork();
+		   		console.log(this.name+"开始上班");
+		   	}
+		   }
+
+		   worker.work(()=>console.log(this.name+"坐车去单位"));		//狗剩坐车去单位   狗剩开始上班
+
+
+		   worker = {
+		   	name:"凤霞",
+		   	work:function(){
+				var beforeWork = () =>console.log(this.name+"坐车去单位");
+				beforeWork();
+		   		console.log(this.name+"开始上班");
+		   	}
+		   }
+		   worker.work();											//凤霞坐车去单位   凤霞开始上班
+		   /**
+			* 例子三 分析：
+			*  	涉及到箭头函数的嵌套，第一段代码中有两个箭头函数work和beforeWork，首先分析beforeWork，
+			*	beforeWork直接是在Window中定义的，定义函数的上下文环境就是Window，因此this就是Window。
+			*	work箭头函数的定义环境是对象worker，worker中没有this，因此this也是指向Window。
+			*   
+			*	第二段代码，箭头函数beforeWork在work中定义，因此beforeWork的this就是work函数中的this，因此
+			*	当worker对象调用work函数的时候，work的this就指向worker，又因为beforeWork的this等于work的this，
+			*	因此beforeWork的this也指向worker，而不是window 
+		    */
+
+		    //相当于：
+		    worker = {
+	   			name:"凤霞",
+	   			work:function(){
+	   				var _this = this;		//关键
+					var beforeWork = () =>console.log(_this.name+"坐车去单位");
+					beforeWork();
+			   		console.log(_this.name+"开始上班");
+			   	}
+			}
+
+			worker.work();										 //凤霞坐车去单位   凤霞开始上班	
+	</script>
+</body>
+</html>

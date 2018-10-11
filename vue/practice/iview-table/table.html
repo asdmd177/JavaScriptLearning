@@ -5,7 +5,7 @@
 	<!-- 引入iview css -->
 	<link rel="stylesheet" type="text/css" href="http://unpkg.com/iview/dist/styles/iview.css">
 	
-	<title>通讯录</title>
+	<title>iview表格测试</title>
 
 	<style type="text/css">
 		.tab{
@@ -29,14 +29,11 @@
 <body>
 	<div id="mainBody">
 		<div class="tab">
-			<i-input class="addInput" placeholder="姓名" clearable v-model="addNew.name"></i-input>
-			<i-input class="addInput" placeholder="手机号码" clearable v-model="addNew.phone"></i-input>
-			<i-input class="addInput" placeholder="邮箱地址" clearable v-model="addNew.mail"></i-input>
-			<i-input class="addInput" placeholder="住址" clearable v-model="addNew.address"></i-input>
-			<i-button type="primary" @click="addNewContact">添加</i-button>
+			<i-input class="addInput" placeholder="路名" clearable v-model="roadName"></i-input>
+			<i-button type="primary" @click="search">搜索</i-button>
 		</div>
-		<i-table v-bind:columns="columns" v-bind:data="contactData"></i-table>
-		<Page :total="contactData.length" :page-size="10" @on-change="changepage" />
+		<i-table v-bind:columns="columns" v-bind:data="tableData"></i-table>
+		<Page :total="dataCount" :page-size="pageSize" @on-change="changePage" />
 	</div>
 </body>
 	<!-- 引入vue -->
@@ -46,5 +43,5 @@
 	<!-- 引入axios -->
 	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 	<!-- 引入本身的js-->
-	<script src="./contact.js"></script>
+	<script src="./table.js"></script>
 </html>

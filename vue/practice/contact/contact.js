@@ -1,6 +1,8 @@
 var vm = new Vue({
 	el:"#mainBody",
 	data:{
+        pageNum:"1",
+        pageSize:"0",
 		columns:[{
 			//添加checkbox
 			type:"selection",
@@ -50,13 +52,7 @@ var vm = new Vue({
                 ]);
             }
         }],
-        contactData:[{
-            'name': '铁蛋',
-            'phone': '13585332843',
-            'mail': 'tiedan@coldmail.com',
-            'address': '浙江省温州市鹿城区吴桥路77号',
-            'date': '2014-09-01'
-        }],
+        contactData:[],
         addNew:{
         	'name':'',
         	'phone':'',
@@ -65,7 +61,7 @@ var vm = new Vue({
         }
 	},
 	methods:{
-		addNewContact:function(){
+		addNewContact(){
 			var date = new Date();
 			var year = date.getFullYear();
 			var month = date.getMonth()+1;
@@ -80,6 +76,24 @@ var vm = new Vue({
 	        	'mail':'',
 	        	'address':''
 			};
-		}
-	}
+		},
+        //http:localhost:8080/web-appserver/test/getData    test_by_fja    
+        changepage(num){
+            this.pageNum+=num;
+            axios({
+                method:"get",
+                url:"http:localhost:8080/web-appserver/test/getData",
+                params:{
+                    interface:"test_by_fja "
+                }
+            }).then(function (response) {
+                console.log(response);
+            }).catch(function (error) {
+                console.log(error);
+            });
+        }
+	},
+    mounted(){
+        this.changepage(0);
+    }
 });

@@ -1,0 +1,32 @@
+var vm = new Vue({
+	el:".layout",
+	data:{
+		headerTabs:[{
+			icon:"ios-navigate",
+			name:"资源管理"
+		},{
+			icon:"ios-keypad",
+			name:"车辆管理"
+		},{
+			icon:"ios-analytics",
+			name:"用户管理"
+		},{
+			icon:"ios-paper",
+			name:"人员管理"
+		}],
+		siderTabs:[{
+			icon:"ios-navigate",
+			name:"资源管理",
+			subTabs:[{
+				name:"探头提示"
+			},{
+				name:"附近车站"
+			},{
+				name:"设备资产管理"
+			}]
+		}]
+	},
+	methods:{
+
+	}
+});

@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>子组件传值给父组件</title>
+	<style type="text/css">
+		input[type="button"]{
+			height: 40px;
+		}
+	</style>
+</head>
+<body>
+	<div id="app">
+		<emit-event></emit-event>
+	</div>	
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+<script type="text/javascript">
+	var child = Vue.extend({
+		template:`<div>
+					<input type="text" v-model="inputContent" />&nbsp;<input type="button" value="发射数据" @click="send"/>
+				  </div>`,
+		data:function(){
+			return {
+				inputContent:''
+			}
+		},
+		methods:{
+			send(){
+				this.$emit("sendInputContent",this.inputContent);
+			}
+		}
+	});
+
+	var parent = Vue.extend({
+		template:`<div><p>子组件传来的数据是{{childData}}</p><f-child v-on:sendInputContent="receiveData"></f-child></div>`,
+		data:function(){
+			return {
+				childData:''
+			}
+		},
+		components:{
+			"f-child":child
+		},
+		methods:{
+			receiveData(val){
+				console.log(val);
+				this.childData = val;
+			}
+		}
+	});
+
+	Vue.component("emit-event",parent);
+	
+	var vm = new Vue({
+		el:'#app'
+	});
+</script>
+</html>

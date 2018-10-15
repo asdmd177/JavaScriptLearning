@@ -16,6 +16,12 @@
 </body>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
 <script type="text/javascript">
+
+	/*
+		1.创建子组件，创建父组件，在父组件中声明子组件。
+		2.子组件中使用$emit()方法，方法接收两个参数，第一个参数是发射的事件的名称，第二个参数是要发射给父组件的数据
+		3.在父组件中，通过标签的形式使用子组件，并在标签中绑定将要发射的事件，v-on:事件名称="触发的函数"
+	*/
 	var child = Vue.extend({
 		template:`<div>
 					<input type="text" v-model="inputContent" />&nbsp;<input type="button" value="发射数据" @click="send"/>

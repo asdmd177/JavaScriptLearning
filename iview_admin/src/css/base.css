@@ -1,0 +1,4 @@
+html,body,#app{height:100%;}
+.layout, .ivu-layout{
+	height:100%;
+}

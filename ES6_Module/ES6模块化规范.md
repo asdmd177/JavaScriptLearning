@@ -67,7 +67,10 @@
     ```javascript
     export let x = 1
     export let y = 2
-    export function sayHi = function(){console.log('hello')}
+    //写法1
+    export let sayHi = function(){console.log('hello')}
+    //写法2
+    export function sayHi(){console.log('hello')}
     ```
 
   - 按需导出的语句可以有***多条***

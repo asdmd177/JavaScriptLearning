@@ -1,0 +1,10 @@
+.content{
+	width:100px;
+	height:200px;
+	background-color: #000;
+	transition: all 1s;
+}
+
+.content:hover{
+	width:400px;
+}

@@ -52,7 +52,7 @@
 
       ```javascript
       //子组件传递info
-      <slot v-bind="info"></slot>
+      <slot v-bind:info="info"></slot>
       
       //父组件获取info数据
       <template slot-scope="slotProps">

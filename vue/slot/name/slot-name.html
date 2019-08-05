@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>具名插槽</title>
+</head>
+<body>
+	<div id="app">
+		<child-component>
+			<div class="default">默认内容</div>
+			<h3 slot="above">我是标题</h3>
+			<hr slot="middle" />
+			<i slot="below">我是内容</i>
+		</child-component>
+	</div>
+</body>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script type="text/javascript" src="./slot-name.js"></script>
+</html>

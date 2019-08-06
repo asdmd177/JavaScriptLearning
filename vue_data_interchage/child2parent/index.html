@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>子组件传值给父组件</title>
+</head>
+<body>
+	<div id="app">
+		<span :style="{fontSize:fontSize + 'px'}">{{title}}</span>
+		<child @enlarge="enlargeFont($event)"></child>
+	</div>
+</body>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script type="text/javascript" src="./index.js"></script>
+</html>

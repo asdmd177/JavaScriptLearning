@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Vue过滤器</title>
+</head>
+<body>
+	<div id="app">
+		<input type="text" v-model="content" /> 
+		<button @click="upper">切换大写</button>
+		<button @click="lower">切换小写</button>
+		<!-- 为过滤器传入参数 -->
+		{{content|myfilter(flag)}}
+	</div>
+</body>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script type="text/javascript" src="./index.js"></script>
+</html>

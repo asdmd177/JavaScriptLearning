@@ -1,6 +1,16 @@
-let reverseTree = (treeNode, targetNodeName, array) => {
+/**
+ * 工具类
+ * ps. 采用按需导出的方式
+ */
+
+ //寻找router节点的所有父节点
+export let reverseTree = (treeNode, targetNodeName, array) => {
 	if(treeNode.name == targetNodeName){
-		array.push(treeNode.title);
+		array.push({
+			"name":treeNode.name,
+			"path":treeNode.path,
+			"title":treeNode.title	
+		});
 		return true
 	}
 	if(!treeNode.children){
@@ -10,19 +20,17 @@ let reverseTree = (treeNode, targetNodeName, array) => {
 	if(len == 0){
 		return false
 	}
-	let flg = false;
+	let flg = false
 	for(let i = 0; i < len; i++){
 		flg = reverseTree(treeNode.children[i],targetNodeName,array);
 		if(flg){
-			array.push(treeNode.title);
+			array.push({
+				"name":treeNode.name,
+				"path":treeNode.path,
+				"title":treeNode.title	
+			});
 			break
 		}
 	}
-	return flg;
-}
-
-
-
-export default {
-	reverseTree:reverseTree
+	return flg
 }

@@ -1,3 +1,8 @@
+<!-- 
+	侧边栏垂直菜单
+	author：fja
+	date：2019-08-15
+-->
 <template>
 	<el-menu
 		unique-opened
@@ -11,7 +16,8 @@
 				<span>{{menu.title}}</span>
 			</template>
 			<el-menu-item 
-				v-for="(subMenu,index) in menu.children" 
+				v-for="(subMenu,index) in menu.children"
+				@click="clickEvent(subMenu)" 
 				v-if="subMenu.children.length == 0" 
 				:index="subMenu.name">
 				<i :class="subMenu.icon"></i>
@@ -27,6 +33,7 @@
 				</template>
 				<el-menu-item 
 					v-for="(_subMenu,index) in subMenu.children"
+					@click="clickEvent(_subMenu)"
 					:index="_subMenu.name">
 					<i :class="_subMenu.icon"></i>
 					{{_subMenu.title}}
@@ -50,6 +57,8 @@
 </template>
 
 <script>
+	import { reverseTree } from '../../util/tools.js'
+
 	export default {
 		props:[],
 		data() {
@@ -59,10 +68,17 @@
 			}
 		},
 		"methods":{
-
+			clickEvent(data) {
+				let array = [];
+				reverseTree(this.menuData[0],data.name,array);
+				// console.log(JSON.stringify(array.reverse()));
+				//send event to Home.vue 
+				this.$emit("refresh-breadcrumb",array.reverse())
+				//TODO link to a new page
+			}
 		},
 		created(){
-			//获取主页menu的数据
+			//require side-menu data
 			var str = window.sessionStorage.getItem("homeMenuData")
 			if(str){
 				this.menuData = JSON.parse(str)

@@ -7,7 +7,8 @@
 <template>
 	<el-container>
 		<el-aside :width="isCollapse ? '65px':'200px'">
-			<menu-component></menu-component>
+			<menu-component
+				@refresh-breadcrumb="refreshCrumbs($event)"></menu-component>
 		</el-aside>
 		<el-container>
 			<el-header>
@@ -39,6 +40,14 @@
 		methods:{
 			foldAside(isCollapse) {
 				this.isCollapse = isCollapse
+			},
+			refreshCrumbs(data) {
+				this.breadcrumbs = [{
+					title:"首页"
+				}];
+				for(let i = 0; i < data.length; i++){
+					this.breadcrumbs.push(data[i]);
+				}
 			}
 		},
 		components:{

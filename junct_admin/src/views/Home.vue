@@ -16,15 +16,18 @@
 					:breadcrumbs="breadcrumbs"
 					@foldAside="foldAside($event)"></header-component>
 			</el-header>
-			<el-main>Main</el-main>
+			<el-main>
+				<main-content-component></main-content-component>
+			</el-main>
 		</el-container>
 	</el-container>
 </template>
 
 <script>
-	import menuComponent from './menu/Menu.vue'
-	//import menuComponent from './menu/Menu-Iview.vue'
-	import headerComponent from './header/Header.vue'
+	import menuComponent from '../components/menu/Menu.vue'
+	import headerComponent from '../components/header/Header.vue'
+	import mainContentComponent from '../components/main/Main.vue'
+	
 	export default {
 		data() {
 			return {
@@ -32,8 +35,6 @@
 				"isCollapse":false,
 				"breadcrumbs":[{
 					title:"首页"
-				},{
-					"title":"系统设置"
 				}]
 			}
 		},
@@ -52,7 +53,8 @@
 		},
 		components:{
 			"menu-component":menuComponent,
-			"header-component":headerComponent
+			"header-component":headerComponent,
+			"main-content-component":mainContentComponent
 		},
 		created() {
 		
@@ -86,6 +88,7 @@
 	.el-main {
 		background-color: #E9EEF3;
 		text-align: center;
+		padding: 0px !important; 
 	}
 
 	#app > .el-container {

@@ -1,10 +1,12 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
+//plugins
 import './plugins/element.js'
 import './plugins/iview.js'
+import './plugins/animate.js'
 
-//样式
+//style
 import './assets/icon-fonts/iconfont.css'
 import './assets/global.less'
 

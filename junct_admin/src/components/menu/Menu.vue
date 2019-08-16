@@ -92,7 +92,5 @@
 </script>
 
 <style lang="less" scoped>
-	.el-menu{
-		border-right: 0px !important;
-	}
+	@import './Menu.less';
 </style>

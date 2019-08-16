@@ -1,9 +1,9 @@
 <template>
 	<el-row :gutter="20">
-		<el-col :span="2">
+		<el-col :span="1">
 			<i @click="rotate" ref="switch" class="el-icon-s-unfold menu-switch"></i>
 		</el-col>
-		<el-col :span="19">
+		<el-col :span="20">
 			<el-breadcrumb separator-class="el-icon-arrow-right">
 			  <el-breadcrumb-item 
 			  	v-for="(crumb,i) in breadcrumbs">{{crumb.title}}</el-breadcrumb-item>
@@ -16,7 +16,7 @@
 </template>
 
 <script>
-	import avatar from '../../assets/logo.png'
+	import avatar from '../../assets/img/admin-avatar.jpg'
 	export default {
 		props:["breadcrumbs"],
 		data() {
@@ -51,17 +51,5 @@
 </script>
 
 <style scoped lang="less">
-	.menu-switch{
-		float: left;
-	    font-size: 30px;
-	    margin-top: 15px;
-	    cursor:pointer;
-	    transition: all 0.5s;
-	}
-	.el-icon-arrow-right::before {
-	    color: #000000 !important;
-	}
-	.el-breadcrumb{
-		margin-top: 22px
-	}
+ @import './Header.less';
 </style>

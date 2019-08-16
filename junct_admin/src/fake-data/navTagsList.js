@@ -1,0 +1,59 @@
+var list = [{
+	title:'首页',
+	color:'primary',
+	name:'mainpage'	
+},{
+	title:'标签一',
+	color:'default',
+	name:'one'	
+},{
+	title:'标签二',
+	color:'default',
+	name:'two'	
+},{
+	title:'标签三',
+	color:'default',
+	name:'three'	
+},{
+	title:'标签四',
+	color:'default',
+	name:'four'	
+},{
+	title:'标签五',
+	color:'default',
+	name:'five'	
+},{
+	title:'标签六',
+	color:'default',
+	name:'six'	
+},{
+	title:'标签七',
+	color:'default',
+	name:'seven'	
+},{
+	title:'标签八',
+	color:'default',
+	name:'eight'	
+},{
+	title:'标签⑨',
+	color:'default',
+	name:'nine'	
+},{
+	title:'标签十',
+	color:'default',
+	name:'ten'	
+},{
+	title:'标签十一',
+	color:'default',
+	name:'eleven'	
+},{
+	title:'标签十二',
+	color:'default',
+	name:'twlve'	
+},{
+	title:'标签十三',
+	color:'default',
+	name:'thirteen'	
+}]
+
+export default list

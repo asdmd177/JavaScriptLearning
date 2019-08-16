@@ -17,7 +17,7 @@
 					@foldAside="foldAside($event)"></header-component>
 			</el-header>
 			<el-main>
-				<main-content-component></main-content-component>
+				<main-content-component :tagsList="tagsList"></main-content-component>
 			</el-main>
 		</el-container>
 	</el-container>
@@ -27,7 +27,7 @@
 	import menuComponent from '../components/menu/Menu.vue'
 	import headerComponent from '../components/header/Header.vue'
 	import mainContentComponent from '../components/main/Main.vue'
-	
+	import tagsList from '../fake-data/navTagsList.js'
 	export default {
 		data() {
 			return {
@@ -35,7 +35,8 @@
 				"isCollapse":false,
 				"breadcrumbs":[{
 					title:"首页"
-				}]
+				}],
+				"tagsList":tagsList
 			}
 		},
 		methods:{
@@ -57,7 +58,31 @@
 			"main-content-component":mainContentComponent
 		},
 		created() {
-		
+			//listen tag-close event
+			this.$eventHub.$on("tag-close",$event =>{
+				let tagName = $event;
+				let index = this.tagsList.findIndex((tag)=>{
+		          return tag.name === tagName
+		        });
+		        if(tagsList[index].color == 'primary'){
+		            this.tagsList[index-1].color = 'primary'
+		        }
+		        this.tagsList.splice(index,1);
+			});
+
+			this.$eventHub.$on("tag-click",$event =>{
+				let tagName = $event;
+		        for(let i = 0; i < this.tagsList.length; i++){
+		          var item = this.tagsList[i];
+		          if(item.name == tagName && item.color === 'primary'){
+		            break;
+		          }else if(item.name == tagName){
+		            item.color = 'primary'
+		          }else if(item.color === 'primary'){
+		            item.color = 'default'
+		          }
+		        }
+			});
 		}
 	}
 </script>

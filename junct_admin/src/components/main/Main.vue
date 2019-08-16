@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<tags-nav></tags-nav>
+		<tags-nav :tagsList="tagsList"></tags-nav>
 		<router-view></router-view>
 	</div>
 </template>
@@ -9,6 +9,7 @@
 	import TagsNav from '../tags-nav/tags-nav.vue'
 
 	export default {
+		props:["tagsList"],
 		data() {
 			return {
 

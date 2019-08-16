@@ -22,6 +22,7 @@
     </div>
     <div class="scroll-outer" ref="scrollOuter">
       <div class="scroll-body" ref="scrollBody">
+        <!-- lightSpeedOut -->
         <transition-group leave-active-class="animated lightSpeedOut">
           <Tag 
             type="dot" 
@@ -38,47 +39,35 @@
 </template>
 
 <script>
-  import tagsList from '../../fake-data/navTagsList.js'
 
   export default {
     name: 'TagsNav',
-    props: {},
+    props: ["tagsList"],
     data () {
       return {
-        "scrollBodyLeft":0,
-        "tagsList":tagsList
+        "scrollBodyLeft":0
       }
     },
     methods: {
       handleScroll(val) {
         var scrollBody = this.$refs.scrollBody;
         this.scrollBodyLeft += val;
+        let minus = this.$refs.scrollOuter.offsetWidth - scrollBody.offsetWidth;
+        if(this.scrollBodyLeft < minus){
+            this.scrollBodyLeft = minus;
+        }
+        if(this.scrollBodyLeft > 0){
+          this.scrollBodyLeft = 0;
+        }
         scrollBody.style.transform = 'translateX('+this.scrollBodyLeft+'px)';
       },
       handleClick(tagName) {
-        for(let i = 0; i < this.tagsList.length; i++){
-          var item = this.tagsList[i];
-          if(item.name == tagName && item.color === 'primary'){
-            break;
-          }else if(item.name == tagName){
-            item.color = 'primary'
-          }else if(item.color === 'primary'){
-            item.color = 'default'
-          }
-        }
+        this.$eventHub.$emit("tag-click",tagName);
       },
       handleClose(tagName) {
-        let index = this.tagsList.findIndex((tag)=>{
-          return tag.name === tagName
-        });
-        if(tagsList[index].color == 'primary'){
-            this.tagsList[index-1].color = 'primary'
-        }
-        this.tagsList.splice(index,1);
+        //scrollBody
+        this.$eventHub.$emit("tag-close",tagName);
       }
-    },
-    created () {
-
     }
   };
 </script>

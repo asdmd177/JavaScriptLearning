@@ -1,5 +1,5 @@
 {
-  "name": "junc_admin",
+  "name": "junct_admin",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -23,6 +23,7 @@
     "@vue/eslint-config-standard": "^4.0.0",
     "babel-eslint": "^10.0.1",
     "babel-plugin-component": "^1.1.1",
+    "babel-plugin-import": "^1.8.0",
     "css-loader": "^3.2.0",
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.0.0",

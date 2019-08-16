@@ -1,4 +1,4 @@
-# junc_admin
+# junct_admin
 
 ## Project setup
 ```

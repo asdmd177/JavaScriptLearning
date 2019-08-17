@@ -83,6 +83,14 @@
 		          }
 		        }
 			});
+
+			this.$eventHub.$on("tag-close-all",$event =>{
+				this.tagsList = [{
+					title:'首页',
+					color:'primary',
+					name:'mainpage'	
+				}]
+			});
 		}
 	}
 </script>

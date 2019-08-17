@@ -10,7 +10,13 @@
 			</el-breadcrumb>
 		</el-col>
 		<el-col :span="3">
-			<el-avatar :size="50" :src="avatarURL"></el-avatar>
+			<Dropdown>
+				<el-avatar :size="50" :src="avatarURL"></el-avatar>
+			    <Icon :size="18" type="md-arrow-dropdown"></Icon>
+		      	<DropdownMenu slot="list">
+		        	<DropdownItem name="logout">退出登录</DropdownItem>
+		      	</DropdownMenu>
+	      	</Dropdown>
 		</el-col>
 	</el-row>
 </template>

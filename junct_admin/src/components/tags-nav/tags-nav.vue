@@ -6,7 +6,7 @@
           <Icon :size="18" type="ios-close-circle-outline" />
         </el-button>
         <DropdownMenu slot="list">
-          <DropdownItem name="close-all">关闭所有</DropdownItem>
+          <DropdownItem name="close-all" @click.native="handleCloseAll">关闭所有</DropdownItem>
         </DropdownMenu>
       </Dropdown>
     </div>
@@ -23,15 +23,16 @@
     <div class="scroll-outer" ref="scrollOuter">
       <div class="scroll-body" ref="scrollBody">
         <!-- lightSpeedOut -->
-        <transition-group leave-active-class="animated lightSpeedOut">
+        <transition-group leave-active-class="animated flipOutY">
           <Tag 
             type="dot" 
+            style="animation-duration: 500ms"
             v-for="(tag,index) in tagsList" 
             :color="tag.color" 
             :key="tag.name"
             :closable="!(tag.name=='mainpage')"
             @click.native="handleClick(tag.name)"
-            @on-close="handleClose(tag.name)">{{tag.title}}</Tag>
+            @on-close="handleClose(tag.name,index)">{{tag.title}}</Tag>
         </transition-group>
       </div>
     </div>
@@ -64,9 +65,27 @@
       handleClick(tagName) {
         this.$eventHub.$emit("tag-click",tagName);
       },
-      handleClose(tagName) {
-        //scrollBody
+      handleClose(tagName,index) {
+        var scrollBodyWidth = this.$refs.scrollBody.offsetWidth;
+        var scrollOuterWidth = this.$refs.scrollOuter.offsetWidth;
         this.$eventHub.$emit("tag-close",tagName);
+        //last tag and scrollBody is longer than scrollOuter
+        if(scrollBodyWidth > scrollOuterWidth){
+          //because of animate.css,lag 500ms to require the width of scrollBodyWidth
+          setTimeout(()=>{
+            //the width of closed tag
+            var tagMinus = scrollBodyWidth - this.$refs.scrollBody.offsetWidth;
+            this.scrollBodyLeft += tagMinus;
+            if(this.scrollBodyLeft > 0){
+              this.scrollBodyLeft = 0;
+            }
+            this.$refs.scrollBody.style.transform = 'translateX('+this.scrollBodyLeft+'px)';
+          },550)
+        }
+      },
+      handleCloseAll() {
+        this.$refs.scrollBody.style.transform = 'translateX(0px)';
+        this.$eventHub.$emit("tag-close-all");
       }
     }
   };

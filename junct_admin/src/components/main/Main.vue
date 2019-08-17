@@ -1,3 +1,8 @@
+<!-- 
+	页面主体
+	author：fja
+	date 2019-8-12
+-->
 <template>
 	<div>
 		<tags-nav :tagsList="tagsList"></tags-nav>

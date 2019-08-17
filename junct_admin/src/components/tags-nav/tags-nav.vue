@@ -1,3 +1,8 @@
+<!-- 
+  navigate tag column
+  @author：fja
+  @date 2019-08-17
+-->
 <template>
   <div class="tags-nav">
     <div class="close-con">
@@ -30,7 +35,7 @@
             v-for="(tag,index) in tagsList" 
             :color="tag.color" 
             :key="tag.name"
-            :closable="!(tag.name=='mainpage')"
+            :closable="!(tag.name=='welcome')"
             @click.native="handleClick(tag.name)"
             @on-close="handleClose(tag.name,index)">{{tag.title}}</Tag>
         </transition-group>
@@ -64,6 +69,7 @@
       },
       handleClick(tagName) {
         this.$eventHub.$emit("tag-click",tagName);
+        //TODO link to target page
       },
       handleClose(tagName,index) {
         var scrollBodyWidth = this.$refs.scrollBody.offsetWidth;

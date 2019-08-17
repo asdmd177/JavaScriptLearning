@@ -18,7 +18,8 @@ import {
   	Breadcrumb,
   	BreadcrumbItem,
   	Row,
-  	Col
+  	Col,
+  	MessageBox
 } from 'element-ui'
 
 //login
@@ -49,3 +50,5 @@ Vue.use(Col);
 
 //common
 Vue.prototype.$msg = Message;
+Vue.prototype.$msgbox = MessageBox;
+Vue.prototype.$confirm = MessageBox.confirm;

@@ -1,12 +1,15 @@
 <!-- 
-	vertical side menu
+	垂直侧边栏
 	@author：fja
 	@date：2019-08-15
 -->
 <template>
 	<el-menu
+		router
 		unique-opened
+		ref="asideMenu"
 		:collapse="isCollapse"
+		:default-active="$route.name"
 		background-color="#545c64"
 		text-color="#fff"
 		active-text-color="#2D8CF0">
@@ -18,14 +21,14 @@
 			<el-menu-item 
 				v-for="(subMenu,index) in menu.children"
 				@click="handleClick(subMenu)" 
-				v-if="subMenu.children.length == 0" 
+				v-if="subMenu.children && subMenu.children.length == 0" 
 				:index="subMenu.name">
 				<i :class="subMenu.icon"></i>
 				{{subMenu.title}}
 			</el-menu-item>
 			<el-submenu 
 				v-for="(subMenu,index) in menu.children" 
-				v-if="subMenu.children.length > 0" 
+				v-if="subMenu.children && subMenu.children.length > 0" 
 				:index="subMenu.name">
 				<template slot="title">
 					<i :class="subMenu.icon"></i>
@@ -56,12 +59,13 @@
 		"methods":{
 			handleClick(data) {
 				let array = [];
-				reverseTree(this.menuData[0],data.name,array);
-				// console.log(JSON.stringify(array.reverse()));
-				//send event to Home.vue 
+				reverseTree({
+					children:this.menuData
+				},data.name,array);
+				//刷新面包屑
 				this.$emit("refresh-breadcrumb",array.reverse())
+				//增加新的导航页签
 				this.$emit("add-tags-nav",data)
-				//TODO link to a new page
 			}
 		},
 		created(){

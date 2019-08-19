@@ -6,7 +6,9 @@
 <template>
 	<div>
 		<tags-nav :tagsList="tagsList"></tags-nav>
-		<router-view></router-view>
+		<div class="main-content">
+			<router-view></router-view>
+		</div>
 	</div>
 </template>
 

@@ -27,8 +27,9 @@
     </div>
     <div class="scroll-outer" ref="scrollOuter">
       <div class="scroll-body" ref="scrollBody">
-        <!-- lightSpeedOut -->
-        <transition-group leave-active-class="animated flipOutY">
+        <transition-group
+          enter-active-class="animated fadeInLeft" 
+          leave-active-class="animated flipOutY">
           <Tag 
             type="dot" 
             style="animation-duration: 500ms"

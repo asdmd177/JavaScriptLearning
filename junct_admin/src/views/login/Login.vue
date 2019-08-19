@@ -7,6 +7,8 @@
 <template>
 	<div class="login-component">
 		<el-card class="box-card">
+			<span class="login-slogan">junct_admin管理后台</span>
+    		<el-divider></el-divider>
 			<el-form ref="loginForm" :model="loginForm" :rules="rules">
 			  	<el-form-item prop="username">
 			    	<el-input v-model="loginForm.username">

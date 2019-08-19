@@ -5,11 +5,14 @@ import router from './router'
 import './plugins/element.js'
 import './plugins/iview.js'
 import './plugins/animate.js'
+import './plugins/axios.js'
 
 //style
 import './assets/icon-fonts/iconfont.css'
 import './assets/global.less'
 
+//filter
+import './filter/gender-filter.js'
 
 Vue.config.productionTip = false
 //build eventHub

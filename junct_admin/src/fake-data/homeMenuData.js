@@ -7,15 +7,15 @@ const data = [{
 		"name":"system-settings",
 		"icon":"el-icon-s-operation",
 		"children":[{
-			"title":"菜单管理",
+			"title":"功能管理",
 			"name":"menu-manage",
 			"icon":"el-icon-s-order",
-			"path":"/menuManage"
+			"path":"/menu-manage"
 		},{
 			"title":"指令管理",
 			"name":"instructs-manage",
 			"icon":"el-icon-s-flag",
-			"path":"/instructsManage"
+			"path":"/instructs-manage"
 		}]
 	},{
 		"title":"用户相关",
@@ -25,8 +25,24 @@ const data = [{
 			"title":"用户角色",
 			"icon":"el-icon-setting",
 			"name":"user-role",
-			"path":"/userRole"
+			"path":"/user-role"
+		},{
+			"title":"用户列表",
+			"icon":"el-icon-s-management",
+			"name":"user-list",
+			"path":"/user-list"
 		}]
+	}]
+},{
+	"title":"报表",
+	"name":"reports",
+	"icon":"el-icon-s-marketing",
+	"children":[{
+		"title":"echarts",
+		"name":"echarts",
+		"icon":"el-icon-s-data",
+		"path":"/echarts",
+		"children":[]
 	}]
 }]
 

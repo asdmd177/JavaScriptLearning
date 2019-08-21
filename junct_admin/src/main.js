@@ -6,6 +6,7 @@ import './plugins/element.js'
 import './plugins/iview.js'
 import './plugins/animate.js'
 import './plugins/axios.js'
+import './plugins/js-md5.js'
 
 //style
 import './assets/icon-fonts/iconfont.css'

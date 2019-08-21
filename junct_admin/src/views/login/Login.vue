@@ -70,14 +70,27 @@
 				//valid
 				this.$refs.loginForm.validate((valid)=>{
 				 	if(valid){
-				 		//模拟登陆，获取令牌
-				 		if(this.loginForm.username=='admin' && this.loginForm.password == 1){
-							window.sessionStorage.setItem('token','1')
-							window.sessionStorage.setItem('homeMenuData',JSON.stringify(menuDatas))
-							this.$router.push('/home');
-				 		}else{
-				 			this.$msg("用户名密码验证失败")
-				 		}
+				 		//登陆，获取令牌
+				 		this.$http({method:"post",url:"login/check",
+		                    params:{
+					 			username:this.loginForm.username,
+					 			password:this.$md5(this.loginForm.password)
+					 		}
+		                }).then(res => {
+		                	let { data } = res;
+		                	//成功
+		                	if(data.code == 0){
+								window.sessionStorage.setItem('token',data.token)
+								window.sessionStorage.setItem('homeMenuData',JSON.stringify(data.menu))
+		                		this.$router.push('/home');
+		                	}
+		                	//验证失败
+		                	else{
+		                		this.$msg(data.message)
+		                	}
+				 		}).catch((error) => {
+		                    this.$msg(error)
+		                });
 				 	}else{
 				 		return valid;
 				 	}

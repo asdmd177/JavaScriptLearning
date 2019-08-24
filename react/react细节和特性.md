@@ -10,6 +10,14 @@
   }
   ```
 
+- 遍历组件的所有子节点(React.Children)
+
+  ```javascript
+  React.Children.map(this.props.children,(child)=>{
+  
+  })
+  ```
+
   
 
 - 事件绑定
@@ -29,6 +37,8 @@
 
 - ref关键字
 
+  - 注意：this.refs[refName]获取的是真实的DOM，因此需要等到元素被挂载到页面之后才能使用
+  
   ```javascript
   <h1 ref="h1"></h1>
   

@@ -13,6 +13,7 @@
     - 组件完成了挂载
     - 在这个函数中，可以使用document.getElementbyId等获取DOM元素
     - 执行完，组件进入运行阶段
+    - 是一个订阅的常用位置
 
 
 
@@ -32,8 +33,9 @@
     - 组件将要被更新，还没与更新
   - render()
     - 将虚拟DOM更新到最新
-  - componentDIdUpdate(prevProps,prevState)
+  - componentDIdUpdate(prevProps,prevState,snapshot)
     - 组件更新完毕，渲染完成
+    - snapshot是getSnapshotBeforeUpdate钩子函数的返回值
 
 
 
@@ -42,3 +44,19 @@
 - 销毁阶段
   - componentWillUnmount()
     - 组件将被销毁，组件中的方法尚可被调用
+
+
+
+
+
+- 不安全方法：尽量少用，以后可能移除
+
+  - componentWillMount
+
+  - componentWillReceiveProps   
+
+    - 可以用 static getDerivedStateFromProps替换
+
+  - ComponentWillUpdate
+
+    
